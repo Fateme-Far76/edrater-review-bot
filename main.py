@@ -13,7 +13,7 @@ import requests
 # ========== Configuration ==========
 USERNAME = "fati_squib@yahoo.com"
 PASSWORD = "Iwillnotlose@2025"
-SCHOOL_URL = "https://edrater.com/listing/river-heights-elementary/"
+SCHOOL_URL = "https://edrater.com/listing/university-of-wisconsin-river-falls/"
 REVIEW_LOG = "reviewed_schools.json"
 LOCAL_AI_API_URL = "http://localhost:11434/api/generate"
 FALLBACK_COMMENT_FILE = "Fallback_Comments.csv"
@@ -204,6 +204,8 @@ def submit_review(driver, review):
         Exception: If any step fails, it logs screenshots and HTML dumps for debugging.
     """
     driver.get(SCHOOL_URL)
+    if driver.execute_script("return document.getElementById('wpadminbar') !== null;"):
+        driver.execute_script("document.getElementById('wpadminbar').style.display = 'none';")
     time.sleep(3)
 
     try:

@@ -1,3 +1,4 @@
+import os
 import csv
 import time
 import json
@@ -60,8 +61,9 @@ def fallback_comments(filename=FALLBACK_COMMENT_FILE):
 
     Returns:
         List[str]: A list of non-empty, stripped comment strings from the file.
-    """    
-    with open(filename, newline='', encoding='utf-8') as csvfile:
+    """   
+    file_path = os.path.join(os.path.dirname(__file__), filename) 
+    with open(file_path, newline='', encoding='utf-8') as csvfile:
         reader = csv.reader(csvfile)
         comments = [row[0].strip() for row in reader if row and row[0].strip()]
         return comments

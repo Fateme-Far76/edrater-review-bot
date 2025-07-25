@@ -19,6 +19,7 @@ This project automates the process of submitting school reviews on [edrater.com]
 
 ## 📂 Project Structure
 
+```bash
 .
 ├── main.py # CLI entry point – handles CSV loading and user interaction
 ├── review_bot.py # Core automation logic (login, comment generation, review submission)
@@ -26,7 +27,7 @@ This project automates the process of submitting school reviews on [edrater.com]
 ├── reviewed_schools.json # Logs of already-reviewed school URLs
 ├── .gitignore # Excludes pycache, .DS_Store, etc.
 ├── README.md # This documentation file
-
+```
 
 ---
 

@@ -295,21 +295,25 @@ def run_for_urls(url_list):
     options = Options()
     options.add_argument("--start-maximized")
     driver = webdriver.Chrome(options=options)
-
-    for url in url_list:
-        if url in reviewed:
-            print(f"Already reviewed: {url}")
-            continue
+    
+    try:
+        login(driver)
         
-        try:
-            login(driver)
-            review = generate_review()
-            submit_review(driver, review, school_url=url)
-            reviewed[url] = review
-            save_log(reviewed)
-        except Exception as e:
-            print(f"Error for {url}: {e}")
-    driver.quit()
+        for url in url_list:
+            if url in reviewed:
+                print(f"Already reviewed: {url}")
+                continue
+            
+            try:
+                review = generate_review()
+                submit_review(driver, review, school_url=url)
+                reviewed[url] = review
+                save_log(reviewed)
+            except Exception as e:
+                print(f"Error for {url}: {e}")
+    finally:
+        driver.quit()
+        print("All done")
 
 
 # ========== Main Execution ==========
